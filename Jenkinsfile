@@ -12,7 +12,7 @@ pipeline {
         sh 'python --version'
       }
     }
-    stage('Lint HTML') {
+    stage('Lint Python') {
       steps {
         sh 'tidy -q -e *.py'
       }

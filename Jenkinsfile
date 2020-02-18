@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Lint Python') {
       steps {
-        sh 'tidy -q -e *.py'
+        sh 'pylint --disable=R,C,W1203 server.py'
       }
   }
   }

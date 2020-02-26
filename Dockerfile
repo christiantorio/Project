@@ -1,10 +1,11 @@
-FROM python:3.7.3-stretch
+FROM python:3
 
 ## Step 1:
 WORKDIR /app
 
 ## Step 2:
-COPY . app.py /app/
+COPY src /app
+
 
 ## Step 3:
 COPY  requirements.txt /tmp/requirements.txt

@@ -5,13 +5,13 @@
 
 # Step 1:
 # Create dockerpath
-dockerpath="ctorio/pyapp"
+dockerpath="ctorio/reg"
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
 docker login &&\
-    docker image tag pyapp $dockerpath
+    docker image tag reg $dockerpath
 
 # Step 3:
 # Push image to a docker repository

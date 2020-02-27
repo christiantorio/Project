@@ -12,9 +12,8 @@ pipeline {
         sh 'python --version'
       }
     }
-    stage('Hadolint and pylint') {
+    stage('pylint') {
       steps {
-        sh 'hadolint Dockerfile'
         sh 'pylint --disable=R,C src/server.py' 
       }
     }

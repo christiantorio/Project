@@ -4,17 +4,15 @@ FROM python:3
 WORKDIR /app
 
 ## Step 2:
-COPY src /app
-
+COPY . src/ /app/
 
 ## Step 3:
 COPY  requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
-RUN hadolint --ignore DL3013 Dockerfile
 
 ## Step 4:
-EXPOSE 80
+EXPOSE 8000
 
 ## Step 5:
 # Run app.py at container launch
-CMD ["python", "app.py"]
+CMD ["python", "server.py"]

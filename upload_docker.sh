@@ -5,13 +5,13 @@
 
 # Step 1:
 # Create dockerpath
-dockerpath="ctorio/reg"
+dockerpath="ctorio/registration"
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
 docker login &&\
-    docker image tag reg $dockerpath
+    docker image tag registration $dockerpath
 
 # Step 3:
 # Push image to a docker repository

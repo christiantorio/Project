@@ -8,7 +8,7 @@
 setup:
 	# Create python virtualenv & source it
 	# source ~/.devops/bin/activate
-	py -m venv f/Coding/Python/pipeline-project/.devops
+	py -m venv .devops
 
 install:
 	# This should be run from inside a virtualenv
@@ -24,6 +24,6 @@ lint:
 	hadolint Dockerfile
 	# This is a linter for Python source code linter: https://www.pylint.org/
 	# This should be run from inside a virtualenv
-	pylint --disable=R,C,W1203 app.py
+	pylint --disable=R,C src/server.py
 
 all: install lint test

@@ -4,11 +4,11 @@
 
 # Step 1:
 # This is your Docker ID/path
-dockerpath="ctorio/pyapp"
+dockerpath="ctorio/registration"
 
 # Step 2
 # Run the Docker Hub container with kubernetes
-kubectl run pyapp --image=docker.io/ctorio/pyapp --generator=run-pod/v1 --port=80 --labels app=pyapp
+kubectl run registration --image=docker.io/ctorio/registration --generator=run-pod/v1 --port=80 --labels app=registration
 
 # Step 3:
 # List kubernetes pods
@@ -16,4 +16,4 @@ kubectl get pods
 
 # Step 4:
 # Forward the container port to a host
-kubectl port-forward pyapp 8000:80
+kubectl port-forward registration 8000:80

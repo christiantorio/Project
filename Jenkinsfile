@@ -15,6 +15,7 @@ pipeline {
     stage('pylint') {
       steps {
         sh 'pylint --disable=R,C src/server.py' 
+        args 'sudo'
       }
     }
   }

@@ -10,6 +10,7 @@ pipeline {
     stage('Checking python version') {
       steps {
         sh 'python --version'
+        sh 'pip install --user -r requirements.txt'
       }
     }
     stage('pylint') {

@@ -1,11 +1,11 @@
 pipeline {
-  agent {
-    docker {
-      image 'python:3'
-      args '--privileged'
-    }
+   agent any //{
+  //   docker {
+  //     image 'python:3'
+  //     args '--privileged'
+  //   }
 
-  }
+  // }
   stages {
     stage('Checking python version') {
       steps {

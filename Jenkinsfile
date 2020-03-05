@@ -1,11 +1,5 @@
 pipeline {
-   agent any //{
-  //   docker {
-  //     image 'python:3'
-  //     args '--privileged'
-  //   }
-
-  // }
+   agent any 
   stages {
     stage('Checking python version') {
       steps {
@@ -16,7 +10,6 @@ pipeline {
     stage('pylint') {
       steps {
         sh 'pylint --disable=R,C src/server.py' 
-        args 'sudo'
       }
     }
   }

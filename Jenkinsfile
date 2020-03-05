@@ -18,7 +18,9 @@ pipeline {
       }
     }
     stage('Build docker image'){
-      sh 'docker build -t registration .'
+      steps{
+        sh 'docker build -t registration .'
+      }
     }
   }
 }

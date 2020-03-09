@@ -22,7 +22,6 @@
 <body>
     <div class = 'container'>
         <h2>Registration Form</h2>
-        <h3>
             {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -30,7 +29,6 @@
                 {% endfor %}
             {% endif %}
             {% endwith %}
-        </h3>
         <form class = 'registrationform' action = '/register' method = 'post'>
             <div class = 'form-group row'>
                 <label for="InputEmail" class="col-sm-2 col-form-label">Email Address</label>

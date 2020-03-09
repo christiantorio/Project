@@ -29,7 +29,7 @@
                 {% endfor %}
             {% endif %}
             {% endwith %}
-        <div class = 'registrationform' action = '/register' method = 'post'>
+        <form class = 'registrationform' action = '/register' method = 'post'>
             <div class = 'form-group row'>
                 <label for="InputEmail" class="col-sm-2 col-form-label">Email Address</label>
                     <div class = 'col-sm-5'>
@@ -60,15 +60,14 @@
                         <input type="password" class='form-control' name ="password2" aria-describedby = 'PasswordConfirm' placeholder="Confirm Password">
                     </div>
             </div>
+        </form>
             <div class="form-group row">
             <div class="col-sm-10">
                 <form action="/submitted" method = 'Post'>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-            </div>
         </div>
-
     </div>
 </body>
 </html>

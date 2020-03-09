@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Perform tidylint') {
       steps {
-        sh 'tidy -q -e /src/templates/*.htm' 
+        sh 'tidy -q -e src/templates/*.htm' 
       }
     }
     stage('Perform pylint') {

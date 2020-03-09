@@ -1,6 +1,8 @@
 pipeline {
-   def dockerpath = "ctorio/registration"
-   agent any 
+  agent any 
+  environment {
+    dockerpath = "ctorio/registration"
+  }
   stages {
     stage('Checking python version') {
       steps {

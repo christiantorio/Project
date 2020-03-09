@@ -12,7 +12,12 @@ pipeline {
         sh 'pip install --user -r requirements.txt'
       }
     }
-    stage('pylint') {
+    stage('Perform tidylint') {
+      steps {
+        sh 'tidy -q -e /templates/src/server.py' 
+      }
+    }
+    stage('Perform pylint') {
       steps {
         sh 'pylint --disable=R,C src/server.py' 
       }
@@ -20,6 +25,7 @@ pipeline {
     stage('Build docker image'){
       steps{
         sh 'docker build -t registration .'
+        sh 'docker image ls'
       }
     }
   }

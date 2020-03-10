@@ -33,8 +33,8 @@ pipeline {
     }
     stage('Upload docker image'){
       steps{
-        withCredentials[usernamePassword(credentialsId: 'docker-id', Password: 'Password', Username: 'User')]
-        sh "docker login -u ${env.UserName} -p ${env.Password}"
+        withCredentials[usernamePassword(credentialsId: 'docker-id', passwordVariable: 'Password', usernameVariable: 'User')]
+        sh "docker login -u ${env.User} -p ${env.Password}"
       }
     }
     stage('Upload to AWS') {

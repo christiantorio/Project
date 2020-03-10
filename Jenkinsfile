@@ -29,7 +29,7 @@ pipeline {
       steps{
         withCredentials[usernamePassword(credentialsId: 'docker-id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]
           echo "Docker ID and Image: $dockerpath"
-          sh "docker login ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
       }
     }
     stage('Upload to AWS') {

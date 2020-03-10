@@ -4,6 +4,10 @@ pipeline {
     dockerpath = "ctorio/registration"
   }
   stages {
+    stage('Clone repository') {
+        echo 'Making sure we have the repository cloned to our workspace'
+        checkout scm
+    }
     stage('Checking python version') {
       steps {
         sh 'python --version'
@@ -27,9 +31,9 @@ pipeline {
     }
     stage('Upload docker image'){
       steps{
-        withCredentials[usernamePassword(credentialsId: 'docker-id', passwordVariable: 'docker-idPassword', usernameVariable: 'docker-idUser')]
+        withCredentials[usernamePassword(credentialsId: 'docker-id', password: 'Password', username: 'User')]
           echo "Docker ID and Image: $dockerpath"
-          sh "docker login -u ${env.docker-idUser} -p ${env.docker-idPassword}"
+          sh "docker login -u ${env.User} -p ${env.Password}"
       }
     }
     stage('Upload to AWS') {

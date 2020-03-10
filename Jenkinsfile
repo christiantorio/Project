@@ -5,8 +5,10 @@ pipeline {
   }
   stages {
     stage('Clone repository') {
+      steps{
         echo 'Making sure we have the repository cloned to our workspace'
         checkout scm
+      }
     }
     stage('Checking python version') {
       steps {

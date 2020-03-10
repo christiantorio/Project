@@ -29,17 +29,17 @@ pipeline {
       steps{
         withCredentials[usernamePassword(credentialsId: 'dcoker-id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]
           echo "Docker ID and Image: $dockerpath"
-          sh 'docker login -u ctorio -p ${env.dockerHubPassword}'
+          sh 'docker login ${env.dockerHubUser}-p ${env.dockerHubPassword}'
           sh 'docker image ls'
       }
     }
     stage('Upload to AWS') {
-             steps {
-                 withAWS(region:'us-west-2',credentials:'aws-jenkins') {
-                 sh 'echo "Uploading content with AWS creds"'
-                     s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, path:'/src', bucket:'project-pipeline-ci-cd')
-                 }
-             }
-        }
+      steps {
+          withAWS(region:'us-west-2',credentials:'aws-jenkins') {
+          sh 'echo "Uploading content with AWS creds"'
+              s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, path:'/src', bucket:'project-pipeline-ci-cd')
+          }
+      }
+    }
   }
 }

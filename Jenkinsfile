@@ -27,7 +27,7 @@ pipeline {
     }
     stage('Upload docker image'){
       steps{
-        withCredentials([string(credentialsId: 'docker-id', password: 'password')])
+        withCredentials([string(credentialsId: 'dcoker-id', password: 'password')])
         echo "Docker ID and Image: $dockerpath"
         sh 'docker login -u ctorio -p ${env.password}'
       }

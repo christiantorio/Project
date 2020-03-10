@@ -27,9 +27,9 @@ pipeline {
     }
     stage('Upload docker image'){
       steps{
-        withCredentials([string(credentialsId: 'dcoker-id', password: 'password')])
+        withCredentials([usernamePassword(credentialsId: 'dcoker-id', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
         echo "Docker ID and Image: $dockerpath"
-        sh 'docker login -u ctorio -p ${env.password}'
+        sh 'docker login -u ctorio -p ${env.dockerHubPassword}'
       }
     }
     stage('Upload to AWS') {

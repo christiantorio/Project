@@ -1,4 +1,5 @@
-node {
+pipeline {
+  agent any 
   environment {
     dockerpath = "ctorio/registration"
   }
@@ -32,8 +33,8 @@ node {
     }
     stage('Upload docker image'){
       steps{
-        withCredentials[usernamePassword(credentialsId: 'docker-id', passwordVariable: 'Password', usernameVariable: 'User')]
-        sh "docker login"
+        withCredentials[usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Password', usernameVariable: 'User')]
+        sh "docker login -u ctorio -p ${password}"
       }
     }
     stage('Upload to AWS') {

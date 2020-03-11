@@ -1,5 +1,4 @@
-pipeline {
-  agent any 
+node {
   environment {
     dockerpath = "ctorio/registration"
   }

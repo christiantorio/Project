@@ -33,8 +33,9 @@ pipeline {
     }
     stage('Upload docker image'){
       steps{
-        withCredentials[usernamePassword(credentialsId: 'dockerhub', variable: 'password')]
-        sh "docker login -u ctorio -p ${password}"
+        withCredentials[string(credentialsId: 'dockerhub', variable: 'password')]{
+          sh "docker login -u ctorio -p ${password}"
+        }
       }
     }
     stage('Upload to AWS') {

@@ -31,13 +31,6 @@ pipeline {
         sh 'pylint --disable=R,C src/server.py' 
       }
     }
-    stage('Upload docker image'){
-      steps{
-        withCredentials[string(credentialsId: 'dockerhub', variable: 'password')]{
-          sh "docker login -u ctorio -p ${password}"
-        }
-      }
-    }
     stage('Upload to AWS') {
       steps {
           withAWS(region:'us-west-2',credentials:'aws-jenkins') {

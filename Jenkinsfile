@@ -43,6 +43,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'user')]) 
           docker.withRegistry('', 'dockerhub') {
           sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+          }
       }
     }
     // stage('Upload to AWS') {

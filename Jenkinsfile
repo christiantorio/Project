@@ -2,7 +2,6 @@ pipeline {
   agent any 
   environment {
     dockerpath = "ctorio/registration"
-
   }
   stages {
     stage('Clone repository') {
@@ -41,11 +40,7 @@ pipeline {
     stage('Upload docker image'){
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'user')]) 
-          docker.withRegistry('', 'dockerhub') {
-          sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-          myImage.push("${env.BUILD_NUMBER}")
-          myImage.push("latest")
-        }
+          sh 'docker login -u ${env.user} -p ${env.password}'
       }
     }
     // stage('Upload to AWS') {

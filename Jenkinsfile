@@ -37,13 +37,19 @@ pipeline {
         sh 'docker image ls'
       }
     }
-    stage('Upload to AWS') {
+    stage('Upload docker image'){
       steps {
-          withAWS(region:'us-west-2',credentials:'aws-jenkins') {
-          sh 'echo "Uploading content with AWS creds"'
-              s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, path:'/src', bucket:'project-pipeline-ci-cd')
-          }
+        sh 'docker login'
       }
     }
+
+    // stage('Upload to AWS') {
+    //   steps {
+    //       withAWS(region:'us-west-2',credentials:'aws-jenkins') {
+    //       sh 'echo "Uploading content with AWS creds"'
+    //           s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, path:'/src', bucket:'project-pipeline-ci-cd')
+    //       }
+    //   }
+    // }
   }
 }

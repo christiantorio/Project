@@ -39,7 +39,7 @@ pipeline {
     }
     stage('Upload docker image'){
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'user')]) {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'user')]) 
         sh 'docker login -u ${user} -p ${password}'
       }
     }

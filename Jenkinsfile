@@ -40,7 +40,7 @@ pipeline {
     stage('Upload docker image'){
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'password', usernameVariable: 'user')]) 
-          sh 'docker login -u $user -p $password'
+          sh 'docker login -u ctorio -p Rocky1201'
           sh 'docker tag registration $dockerpath'
       }
     }

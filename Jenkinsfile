@@ -31,11 +31,12 @@ pipeline {
         sh 'pylint --disable=R,C src/server.py' 
       }
     }
-    stage('Build docker')
+    stage('Build docker'){
       steps {
         sh 'docker build -t registration .'
         sh 'docker image ls'
       }
+    }
     stage('Upload to AWS') {
       steps {
           withAWS(region:'us-west-2',credentials:'aws-jenkins') {

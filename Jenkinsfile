@@ -39,12 +39,11 @@ pipeline {
     }
     stage('Upload docker image'){
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'user')]) 
+        withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'password', usernameVariable: 'user')]) 
         sh 'docker login -u ${env.user} -p ${env.password}'
         sh 'docker tag registration $dockerpath'
       }
     }
-
     // stage('Upload to AWS') {
     //   steps {
     //       withAWS(region:'us-west-2',credentials:'aws-jenkins') {
@@ -53,5 +52,5 @@ pipeline {
     //       }
     //   }
     // }
-  // }
+  }
 }

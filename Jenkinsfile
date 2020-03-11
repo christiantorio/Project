@@ -33,7 +33,7 @@ pipeline {
     }
     stage('Upload docker image'){
       steps{
-        withCredentials[usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Password', usernameVariable: 'User')]
+        withCredentials[usernamePassword(credentialsId: 'dockerhub', variable: 'password')]
         sh "docker login -u ctorio -p ${password}"
       }
     }

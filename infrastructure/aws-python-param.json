@@ -1,7 +1,7 @@
 [
     {
         "ParameterKey": "EnvironmentName",
-        "ParameterValue": "udagram-app"
+        "ParameterValue": "registration"
     },
     {
         "ParameterKey": "VpcCIDR",

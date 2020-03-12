@@ -43,12 +43,9 @@ pipeline {
       steps {
         script {
           docker.build registry + ":$BUILD_NUMBER"
-        }
-        script {
           docker.withRegistry( '', registryCredential ) {
           dockerImage.push()
-      }
-      }
+        }
     }
     // stage('Upload to AWS') {
     //   steps {

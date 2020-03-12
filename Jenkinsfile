@@ -33,19 +33,21 @@ pipeline {
         sh 'pylint --disable=R,C src/server.py' 
       }
     }
-    stage('Build docker'){
-      steps {
-        sh 'docker build -t registration .'
-        sh 'docker image ls'
-      }
-    }
-    stage('Upload docker image'){
+    stage('Build Docker'){
       steps {
         script {
-          docker.build registry + ":$BUILD_NUMBER"
-          docker.withRegistry( '', registryCredential ) {
-          dockerImage.push()
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
     }
     // stage('Upload to AWS') {
     //   steps {

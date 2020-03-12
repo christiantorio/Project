@@ -1,7 +1,8 @@
 pipeline {
   agent any 
   environment {
-    dockerpath = "ctorio/registration"
+    registry= "ctorio/registration"
+    registryCredential = 'dockerhub'
   }
   stages {
     stage('Clone repository') {
@@ -39,8 +40,9 @@ pipeline {
     }
     stage('Upload docker image'){
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'user')]) 
-          sh 'docker login -u ${env.user} -p ${env.password}'
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
       }
     }
     // stage('Upload to AWS') {

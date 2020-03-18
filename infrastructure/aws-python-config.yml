@@ -316,10 +316,10 @@ Resources:
     ProfileWithRolesForOurApp:
       Type: AWS::IAM::InstanceProfile
       Properties:
-        InstanceProfileName: "udacity-test-app"
-        Path: /arn:aws:iam::566038293516:role/udacity-test-app/
+        InstanceProfileName: "project-ci-cd"
+        Path: /arn:aws:iam::566038293516:role/project-ci-cd/
         Roles:
-          - udacity-test-app
+          - project-ci-cd
 
 
 # build outputs last
@@ -385,6 +385,12 @@ Outputs:
         Value: !Ref PrivateSubnet2
         Export:
           Name: !Sub ${EnvironmentName}-PRI2-SN
+
+    SubnetIds:
+        Description: The subnet ids.
+        Value: !Join [ ",", [ !Ref PublicSubnet1, !Ref PublicSubnet2, !Ref PrivateSubnet1, !Ref PublicSubnet2 ] ]
+        Export: 
+            Name: !Sub ${EnvironmentName}-SBN-IDS
 
     LoadBalancerDNSName:
         Description: A reference to the load balancer

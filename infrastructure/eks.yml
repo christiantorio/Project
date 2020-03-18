@@ -1,17 +1,15 @@
 Description: >
-    Capstone project for Cloud DevOps Engineering Nanodegree
-    Author - Mircea Teodor Oprea
-    Creating the EKS cluster.
+    Creating the EKS cluster
 Parameters:
   EnvironmentName:
     Description: An Environment name that will be prefixed to resources
     Type: String
 Resources:
-  CapstoneEKS:
+  RegistrationEKS:
     Type: AWS::EKS::Cluster
     Properties:
       Version: '1.13'
-      RoleArn: arn:aws:iam::358599436160:role/eks-role
+      RoleArn: arn:aws:iam::566038293516:role/eks-role
       ResourcesVpcConfig:
         SecurityGroupIds:
         - Fn::ImportValue:
@@ -23,8 +21,8 @@ Resources:
                       Fn::Sub: ${EnvironmentName}-SBN-IDS
 Outputs:
   EksId:
-    Description: The EKS id.
-    Value: !Ref CapstoneEKS
+    Description: Reference to EKS
+    Value: !Ref RegistrationEKS
     Export: 
         Name: !Sub ${EnvironmentName}-EKS
 

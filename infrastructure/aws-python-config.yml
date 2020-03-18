@@ -247,8 +247,8 @@ Resources:
             apt-get install apache2 -y
             systemctl start apache2.service
             cd /var/www/html
-            aws s3 cp s3://udacity-demo-1/udacity.zip .
-            unzip -o udacity.zip
+            aws s3 cp s3://project-pipeline-ci-cd/ .
+            pip install -r /tmp/requirements.txt
         ImageId: ami-06d51e91cea0dac8d
         SecurityGroups:
         - Ref: WebServerSecGroup

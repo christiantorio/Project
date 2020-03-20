@@ -320,9 +320,25 @@ Resources:
         Path: /arn:aws:iam::566038293516:role/project-ci-cd/
         Roles:
           - project-ci-cd
-
-
-# build outputs last
+    DefaultSecurityGroup:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        VpcId: !Ref VPC
+        GroupDescription: Default security group for EKS.
+        SecurityGroupIngress:
+           - IpProtocol: tcp
+             FromPort: 1025
+             ToPort: 65535
+             CidrIp: 0.0.0.0/0
+           - IpProtocol: tcp
+             FromPort: 443
+             ToPort: 443
+             CidrIp: 0.0.0.0/0
+        SecurityGroupEgress:
+           - IpProtocol: tcp
+             FromPort: 1025
+             ToPort: 65535
+             CidrIp: 0.0.0.0/0
 
 Outputs: 
 
@@ -395,3 +411,9 @@ Outputs:
     LoadBalancerDNSName:
         Description: A reference to the load balancer
         Value: !GetAtt WebAppLB.DNSName
+
+    SecurityGroup:
+        Description: Cluster security group
+        Value: !Ref DefaultSecurityGroup
+        Export: 
+            Name: !Sub ${EnvironmentName}-SCG

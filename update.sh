@@ -1,4 +1,4 @@
-aws cloudformation create-stack \
+aws cloudformation update-stack \
 --stack-name registration \
 --template-body file://infrastructure/aws-python-config.yml \
 --parameters file://infrastructure/aws-python-param.json \

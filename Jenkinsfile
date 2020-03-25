@@ -15,12 +15,11 @@ pipeline {
     stage('Checking python version') {
       steps {
         sh 'python --version'
-        sh 'pip install --user -r requirements.txt'
       }
     }
     stage('Installing requirements'){
       steps{
-        sh 'pip install --user -r requirements.txt'
+        sh 'pip install --user -r src/requirements.txt'
       }
     }
     stage('Perform tidylint') {

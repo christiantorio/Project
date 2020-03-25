@@ -2,11 +2,11 @@
 [
     {
         "ParameterKey": "EnvironmentName",
-        "ParameterValue": "UdacityCapstoneProject"
+        "ParameterValue": "registration"
     },
     {
         "ParameterKey": "SshKey",
-        "ParameterValue": "mircea-proj-5"
+        "ParameterValue": "devops-project"
     },
     {
         "ParameterKey":"DesiredInstances",

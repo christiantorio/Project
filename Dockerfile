@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . src/ /app/
 
 ## Step 3:
-COPY  requirements.txt /tmp/requirements.txt
+COPY  src/requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
 ## Step 4:

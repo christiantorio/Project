@@ -21,7 +21,7 @@ spec:
         app: capstone-app
     spec:
       containers:
-      - image: mirch/udacity-capstone-project:latest
+      - image: ctorio/registration:latest
         imagePullPolicy: Always
         name: capstone-app
         ports:

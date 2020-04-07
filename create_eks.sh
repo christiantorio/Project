@@ -1,1 +1,1 @@
-aws cloudformation create-stack --stack-name registration-eks --template-body file://eks.yml --parameters file://eks_parameters.json
+aws cloudformation create-stack --stack-name registration-eks --template-body file://infrastructure/eks.yml --parameters file://infrastructure/eks_parameters.json

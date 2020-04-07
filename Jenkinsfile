@@ -48,11 +48,18 @@ pipeline {
         }
       }
     }
-    stage('Upload to AWS') {
+    stage('Upload to AWS S3') {
       steps {
           withAWS(region:'us-west-2',credentials:'aws-upload') {
           sh 'echo "Uploading content with AWS creds"'
               s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'src', bucket:'project-pipeline-ci-cd')
+          }
+      }
+    }
+    stage('Upload to AWS EKS') {
+      steps {
+          withAWS(region:'us-west-2',credentials:'aws-upload') {
+            sh "aws eks --region us-west-2 update-kubeconfig --name RegistrationEKS-FSdpRMlkGdfd"
           }
       }
     }

@@ -27,11 +27,11 @@ pipeline {
         sh 'tidy -q -e src/templates/*.htm' 
       }
     }
-    stage('Perform pylint') {
-      steps {
-        sh 'pylint --disable=R,C src/server.py' 
-      }
-    }
+    // stage('Perform pylint') {
+    //   steps {
+    //     sh 'pylint --disable=R,C src/server.py' 
+    //   }
+    // }
     stage('Build Docker'){
       steps {
         script {

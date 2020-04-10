@@ -12,21 +12,21 @@ pipeline {
         checkout scm
       }
     }
-    stage('Checking python version') {
-      steps {
-        sh 'python --version'
-      }
-    }
-    stage('Installing requirements'){
-      steps{
-        sh 'pip install --user -r src/requirements.txt'
-      }
-    }
-    stage('Perform tidylint') {
-      steps {
-        sh 'tidy -q -e src/templates/*.htm' 
-      }
-    }
+    // stage('Checking python version') {
+    //   steps {
+    //     sh 'python --version'
+    //   }
+    // }
+    // stage('Installing requirements'){
+    //   steps{
+    //     sh 'pip install --user -r src/requirements.txt'
+    //   }
+    // }
+    // stage('Perform tidylint') {
+    //   steps {
+    //     sh 'tidy -q -e src/templates/*.htm' 
+    //   }
+    // }
     // stage('Perform pylint') {
     //   steps {
     //     sh 'pylint --disable=R,C src/server.py' 

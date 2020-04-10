@@ -60,6 +60,12 @@ pipeline {
       steps {
           withAWS(region:'us-west-2',credentials:'aws-upload') {
             sh "aws eks --region us-west-2 update-kubeconfig --name RegistrationEKS-FSdpRMlkGdfd"
+            sh "kubectl apply -f infrastructure/aws-auth-cm.yaml"
+            sh "kubectl set image deployments/registration registration=${registry}:latest"
+            sh "kubectl apply -f infrastructure/capstone-app-deployment.yml"
+            sh "kubectl get nodes"
+            sh "kubectl get pods"
+            sh "aws cloudformation update-stack --stack-name registration-worker-nodes --template-body file://infrastructure/worker_nodes.yml --parameters file://infrastructure/worker_nodes_parameters.json --capabilities CAPABILITY_IAM"
           }
       }
     }

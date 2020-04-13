@@ -58,8 +58,8 @@ pipeline {
     }
     stage('Upload to AWS EKS') {
       steps {
-          withAWS(region:'us-west-2',credentials:'aws-upload') {
-            sh "aws eks --region us-west-2 update-kubeconfig --name RegistrationEKS-FSdpRMlkGdfd"
+          withAWS(region:'us-west-2',credentials:'aws-jenkins') {
+            sh "aws eks --region us-west-2 update-kubeconfig --name RegistrationEKS-FSdpRMlkGdfd --role-arn arn:aws:iam::account-id:root"
             sh "kubectl apply -f infrastructure/aws-auth-cm.yaml"
             sh "kubectl set image deployments/registration registration=${registry}:latest"
             sh "kubectl apply -f infrastructure/capstone-app-deployment.yml"

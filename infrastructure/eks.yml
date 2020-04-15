@@ -8,8 +8,8 @@ Resources:
   RegistrationEKS:
     Type: AWS::EKS::Cluster
     Properties:
-      Version: '1.13'
-      RoleArn: arn:aws:iam::566038293516:role/eks-role
+      Version: '1.15'
+      RoleArn: arn:aws:iam::566038293516:instance-profile/eks-role-1
       ResourcesVpcConfig:
         SecurityGroupIds:
         - Fn::ImportValue:

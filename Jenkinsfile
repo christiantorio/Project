@@ -12,26 +12,26 @@ pipeline {
         checkout scm
       }
     }
-    // stage('Checking python version') {
-    //   steps {
-    //     sh 'python --version'
-    //   }
-    // }
-    // stage('Installing requirements'){
-    //   steps{
-    //     sh 'pip install --user -r src/requirements.txt'
-    //   }
-    // }
-    // stage('Perform tidylint') {
-    //   steps {
-    //     sh 'tidy -q -e src/templates/*.htm' 
-    //   }
-    // }
-    // stage('Perform pylint') {
-    //   steps {
-    //     sh 'pylint --disable=R,C src/server.py' 
-    //   }
-    // }
+    stage('Checking python version') {
+      steps {
+        sh 'python --version'
+      }
+    }
+    stage('Installing requirements'){
+      steps{
+        sh 'pip install --user -r src/requirements.txt'
+      }
+    }
+    stage('Perform tidylint') {
+      steps {
+        sh 'tidy -q -e src/templates/*.htm' 
+      }
+    }
+    stage('Perform pylint') {
+      steps {
+        sh 'pylint --disable=R,C src/server.py' 
+      }
+    }
     stage('Build Docker'){
       steps {
         script {
@@ -59,7 +59,7 @@ pipeline {
     stage('Upload to AWS EKS') {
       steps {
           withAWS(region:'us-west-2',credentials:'aws-jenkins') {
-            sh "aws eks --region us-west-2 update-kubeconfig --name RegistrationEKS-FSdpRMlkGdfd --role-arn arn:aws:iam::account-id:root"
+            sh "aws eks --region us-west-2 update-kubeconfig --name RegistrationEKS-FSdpRMlkGdfd"
             sh "kubectl apply -f infrastructure/aws-auth-cm.yaml"
             sh "kubectl set image deployments/registration registration=${registry}:latest"
             sh "kubectl apply -f infrastructure/capstone-app-deployment.yml"
